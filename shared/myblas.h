@@ -1,6 +1,12 @@
 #ifndef HEADER_myblas
 #define HEADER_myblas
 
+#if __GNUC__ >= 4
+#define __LPSOLVE_VISIBILITY_HIDDEN __attribute__((visibility("hidden")))
+#else
+#define __LPSOLVE_VISIBILITY_HIDDEN
+#endif
+
 /* ************************************************************************ */
 /* BLAS function interface with local and external loadable versions        */
 /* Author:  Kjell Eikland                                                   */
@@ -81,14 +87,14 @@ MYBOOL unload_BLAS(void);
 /* ************************************************************************ */
 /* User-callable BLAS definitions (C base 1)                                */
 /* ************************************************************************ */
-void dscal ( int n, REAL da,  REAL *dx, int incx );
-void dcopy ( int n, REAL *dx, int incx, REAL *dy, int incy );
-void daxpy ( int n, REAL da,  REAL *dx, int incx,   REAL *dy, int incy );
-void dswap ( int n, REAL *dx, int incx, REAL *dy, int incy );
-REAL ddot  ( int n, REAL *dx, int incx, REAL *dy, int incy );
-int  idamax( int n, REAL *x,  int is );
-void dload ( int n, REAL da,  REAL *dx, int incx );
-REAL dnormi( int n, REAL *x );
+__LPSOLVE_VISIBILITY_HIDDEN void dscal ( int n, REAL da,  REAL *dx, int incx );
+__LPSOLVE_VISIBILITY_HIDDEN void dcopy ( int n, REAL *dx, int incx, REAL *dy, int incy );
+__LPSOLVE_VISIBILITY_HIDDEN void daxpy ( int n, REAL da,  REAL *dx, int incx,   REAL *dy, int incy );
+__LPSOLVE_VISIBILITY_HIDDEN void dswap ( int n, REAL *dx, int incx, REAL *dy, int incy );
+__LPSOLVE_VISIBILITY_HIDDEN REAL ddot  ( int n, REAL *dx, int incx, REAL *dy, int incy );
+__LPSOLVE_VISIBILITY_HIDDEN int  idamax( int n, REAL *x,  int is );
+__LPSOLVE_VISIBILITY_HIDDEN void dload ( int n, REAL da,  REAL *dx, int incx );
+__LPSOLVE_VISIBILITY_HIDDEN REAL dnormi( int n, REAL *x );
 
 
 /* ************************************************************************ */
